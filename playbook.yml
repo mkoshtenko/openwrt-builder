@@ -1,0 +1,27 @@
+---
+- hosts: all
+  become: yes
+
+  tasks:
+  - name: Update and upgrade apt packages
+    apt:
+      upgrade: yes
+      update_cache: yes
+  
+  - name: Install packages required for the image builder
+    apt:
+      name: 
+      - build-essential 
+      - libncurses5-dev 
+      - libncursesw5-dev 
+      - zlib1g-dev 
+      - gawk 
+      - git 
+      - gettext 
+      - libssl-dev 
+      - xsltproc 
+      - wget 
+      - unzip 
+      - python
+      state: present
+
