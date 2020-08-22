@@ -7,8 +7,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   # Disable default shared folder.
   config.vm.synced_folder ".", "/vagrant", disabled: true
-  # Share 'scripts' folder.
-  config.vm.synced_folder "scripts/", "/scripts"
+  # Share folders.
+  config.vm.synced_folder "scripts/", "/home/vagrant/scripts"
+  config.vm.synced_folder ".builds/", "/home/vagrant/builds", create: true
 
   # Provider-specific configuration
   config.vm.provider "virtualbox" do |vb|

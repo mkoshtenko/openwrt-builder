@@ -1,9 +1,12 @@
 # OSX
 .DS_Store
 
+# Vim
+*.swp
+
 # Vagrant
 .vagrant*
 
-# Vim
-*.swp
+# Project
+.builds
 
