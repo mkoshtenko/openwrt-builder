@@ -22,44 +22,26 @@ The image builder will be downloaded and executed in a virtual machine with Debi
   - Ansible
   
 ## Steps
-TODO: these steps should be grouped in a shell script.
 
-Create and run the virtual machine:
+Get builder infrastructure:
 ```
-$ vagrant up
-```
-
-Connect to the builder over SSH:
-```
-$ vagrant ssh
+git clone https://github.com/mkoshtenko/openwrt-builder.git
+cd openwrt-builder
 ```
 
-Create builder folder:
+Setup the infrastructure:
 ```
-$ mkdir builder
-$ cd builder
-```
-
-Download and unpack the image builder:
-```
-$ wget https://downloads.openwrt.org/snapshots/targets/bcm27xx/bcm2711/openwrt-imagebuilder-bcm27xx-bcm2711.Linux-x86_64.tar.xz
-$ tar --strip-components=1 -xf openwrt-imagebuilder-bcm27xx-bcm2711.Linux-x86_64.tar.xz
+vagrant up
 ```
 
-Build new image:
+Create build:
 ```
-$ make image PROFILE=rpi-4 PACKAGES="python"
-$ exit
-```
-
-Copy the image to the host machine:
-```
-$ vagrant plugin install vagrant-scp
-$ vagrant scp default:/home/vagrant/builder/bin/targets/bcm27xx/bcm2711/openwrt-bcm27xx-bcm2711-rpi-4-ext4-factory.img.gz .
+vagrant ssh -c 'cd ~/; ./scripts/build'
 ```
 
-Stop and destroy the VM:
+Clean up:
 ```
-$ vagrant halt
-$ vagrant destroy
+vagrant destroy
 ```
+
+The image file should be in `./builds` directory, e.g. `openwrt-rpi-4.img.gz`
