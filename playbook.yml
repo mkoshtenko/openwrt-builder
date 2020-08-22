@@ -23,5 +23,6 @@
       - wget 
       - unzip 
       - python
+      - vim
       state: present
 
