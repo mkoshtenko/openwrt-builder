@@ -20,4 +20,4 @@ make image PROFILE=rpi-4 PACKAGES="python3"
 echo '➜ Copy build.'
 cp /home/vagrant/builder/bin/targets/bcm27xx/bcm2711/openwrt-bcm27xx-bcm2711-rpi-4-ext4-factory.img.gz /home/vagrant/builds/openwrt-rpi-4.img.gz
 
-
+exit 0
