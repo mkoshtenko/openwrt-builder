@@ -1,12 +1,23 @@
 #!/bin/sh
 
+OUTPUT_DIR="/home/vagrant/builds"
+OUTPUT_NAME="openwrt-rpi-4.img.gz"
+
+BUILDER_FOLDER="https://downloads.openwrt.org/snapshots/targets/bcm27xx/bcm2711"
+BUILDER_NAME="openwrt-imagebuilder-bcm27xx-bcm2711.Linux-x86_64.tar.xz"
+
+BUILD_PATH="/home/vagrant/builder/bin/targets/bcm27xx/bcm2711/openwrt-bcm27xx-bcm2711-rpi-4-ext4-factory.img.gz"
+
+INCLUDE_PACKAGES="python3"
+EXCLUDE_PACKAGES="-e2fsprogs -mkf2fs -partx-utils"
+
 echo '➜ Make "builder" directory.'
 mkdir builder
 cd builder
 
 echo '➜ Download and unpack image builder.'
-wget https://downloads.openwrt.org/snapshots/targets/bcm27xx/bcm2711/openwrt-imagebuilder-bcm27xx-bcm2711.Linux-x86_64.tar.xz
-tar --strip-components=1 -xf openwrt-imagebuilder-bcm27xx-bcm2711.Linux-x86_64.tar.xz
+wget "$BUILDER_FOLDER/$BUILDER_NAME"
+tar --strip-components=1 -xf "$BUILDER_NAME"
 
 echo '➜ Create feeds config.'
 echo 'src-git packages https://git.openwrt.org/feed/packages.git' > feeds.conf
@@ -15,9 +26,9 @@ echo '➜ Update feeds.'
 ./scripts/feeds update
 
 echo '➜ Build image.'
-make image PROFILE=rpi-4 PACKAGES="python3"
+make image PROFILE=rpi-4 PACKAGES="$INCLUDE_PACKAGES $EXCLUDE_PACKAGES"
 
 echo '➜ Copy build.'
-cp /home/vagrant/builder/bin/targets/bcm27xx/bcm2711/openwrt-bcm27xx-bcm2711-rpi-4-ext4-factory.img.gz /home/vagrant/builds/openwrt-rpi-4.img.gz
+cp "$BUILD_PATH" "$OUTPUT_DIR/$OUTPUT_NAME"
 
 exit 0
