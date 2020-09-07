@@ -24,5 +24,8 @@
       - unzip 
       - python
       - vim
+      # Prepare testing environment
+      - qemu-system-arm 
+      - fdisk
       state: present
 
