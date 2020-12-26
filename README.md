@@ -45,3 +45,10 @@ vagrant destroy
 ```
 
 The image file should be in `./builds` directory, e.g. `openwrt-rpi-4.img.gz`
+
+## TODO
+  - Make proper config injection
+  - Include USB drivers (Gigabit Ethernet Adapter) 
+  - SSH
+  - Run builder inside a docker container
+  - Test inside QEMU emulator
