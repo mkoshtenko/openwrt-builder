@@ -23,15 +23,13 @@ Created image should be compatible with [RPi CM4 DFRobot Carrier Board Mini](htt
   - Raspberry Pi user utilities `bcm27xx-userland`
 
 ## OSX Steps
-Install all dependencies before moving forward:
-```
-brew install vagrant
-brew install ansible
-```
-VirtualBox can be downloaded from https://www.virtualbox.org
-Note: ARM64(aka Apple CPU) hosts are not supported at the moment
+Install all dependencies before moving forward
+  - Vagrant `brew install vagrant`
+  - Ansible `brew install ansible`
+  - VirtualBox can be downloaded from https://www.virtualbox.org
+    - Note: ARM64(aka Apple CPU) hosts are not supported at the moment   
 
-Get builder infrastructure:
+Clone the builder repo:
 ```
 git clone https://github.com/mkoshtenko/openwrt-builder.git
 cd openwrt-builder
