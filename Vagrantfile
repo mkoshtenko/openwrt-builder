@@ -3,7 +3,7 @@
 
 VAGRANTFILE_API_VERSION = "2"
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-  config.vm.box = "debian/contrib-buster64"
+  config.vm.box = "debian/bookworm64"
 
   # Disable default shared folder.
   config.vm.synced_folder ".", "/vagrant", disabled: true
