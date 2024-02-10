@@ -13,24 +13,23 @@ Custom OpenWRT images can be created with an image builder for bcm2711 target. T
 The image builder will be downloaded and executed in a virtual machine with Debian OS that is managed by Vagrant. The virtual machine uses VirtualBox as a provider and Ansible as a provisioning tool.
 
 ## Build Requirements
-Created images should be compatible with Ansible:
+Created image should be compatible with Ansible:
   - `python` package installed
   - key-based ssh enabled
 
-Created image should be compatible with [RPi CM4 DFRobot Carrier Board Mini](https://wiki.dfrobot.com/Compute_Module_4_IoT_Router_Board_Mini_SKU_DFR0767)
+Created image should be compatible with [RPi CM4 DFRobot Carrier Board Mini](https://wiki.dfrobot.com/Compute_Module_4_IoT_Router_Board_Mini_SKU_DFR0767):
   - NIC driver `kmod-r8169`
   - USB Contour driver `kmod-usb-dwc2`
   - Raspberry Pi user utilities `bcm27xx-userland`
 
-## OSX Dependencies
-  - VirtualBox
-    - ARM64(aka Apple CPU) hosts are not supported at the moment
-  - Vagrant
-    - `brew install vagrant`
-  - Ansible
-    - `brew install ansible`
-  
-## Steps
+## OSX Steps
+Install all dependencies before moving forward:
+```
+brew install vagrant
+brew install ansible
+```
+VirtualBox can be downloaded from https://www.virtualbox.org
+Note: ARM64(aka Apple CPU) hosts are not supported at the moment
 
 Get builder infrastructure:
 ```
