@@ -18,8 +18,11 @@ The image builder will be downloaded and executed in a virtual machine with Debi
 
 ## Dependencies
   - VirtualBox
+    - ARM64(aka Apple CPU) hosts are not supported at the moment
   - Vagrant
+    - `brew install vagrant`
   - Ansible
+    - `brew install ansible`
   
 ## Steps
 
