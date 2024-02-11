@@ -51,9 +51,9 @@ PACKAGES=$(cat "${PACKAGES_PATH}" | grep -e '^[^#$]' | xargs)
 if [ -z "${PACKAGES}" ]; then
     error "Did not find package names."
 else
-    count=$(echo ${PACKAGES} | wc -w | xargs)
+    count=$(echo "${PACKAGES}" | wc -w | xargs)
     echo "Found ${count} packages:"
-    echo ${PACKAGES}
+    echo "${PACKAGES}"
 fi
 success "Loaded list of build packages."
 
