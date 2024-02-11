@@ -59,8 +59,13 @@ success "Image builder content extracted."
 info "Updating feed packages."
 echo 'src-git packages https://git.openwrt.org/feed/packages.git' | tee feeds.conf
 
-if [[ "${OSTYPE}" != "linux-gnu"* ]]; then
-   error "Feeds update script requires Linux-x86_64. Current OS: ${OSTYPE}"
+OS_NAME="$(uname)"
+OS_ARC="$(uname -m)"
+OS_FULL="${OS_NAME}-${OS_ARC}"
+if [ "${OS_FULL}" = "Linux-x85_64" ]; then
+   success "Running on ${OS_FULL}"
+else 
+   error "Feeds update script requires Linux-x86_64. Current OS: ${OS_FULL}"
 fi
 
 ./scripts/feeds update
