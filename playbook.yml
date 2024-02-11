@@ -20,9 +20,9 @@
       - gettext 
       - libssl-dev 
       - xsltproc 
-      - wget 
+      - curl
       - unzip 
-      - python
+      - python3
       - vim
       # Prepare testing environment
       - qemu-system-arm 
