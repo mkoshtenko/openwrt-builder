@@ -41,6 +41,17 @@ success() {
 
 ###################
 
+info "Checking current OS and CPU architecture."
+OS_NAME="$(uname)"
+OS_ARC="$(uname -m)"
+OS_FULL="${OS_NAME}-${OS_ARC}"
+OS_REQUIRED="Linux-x86_64"
+if [ "${OS_FULL}" = "${OS_REQUIRED}" ]; then
+   success "Running on ${OS_FULL}"
+else 
+   error "Image builder scripts require ${OS_REQUIRED}. Current OS: ${OS_FULL}"
+fi
+
 info "Checking builder directory."
 rm -rf "${BUILDER_PATH}" || error "Cannot delete existing builder directory."
 mkdir "${BUILDER_PATH}" || error "Cannot create builder directory."
@@ -58,16 +69,6 @@ success "Image builder content extracted."
 
 info "Updating feed packages."
 echo 'src-git packages https://git.openwrt.org/feed/packages.git' | tee feeds.conf
-
-OS_NAME="$(uname)"
-OS_ARC="$(uname -m)"
-OS_FULL="${OS_NAME}-${OS_ARC}"
-OS_REQUIRED="Linux-x86_64"
-if [ "${OS_FULL}" = "${OS_REQUIRED}" ]; then
-   success "Running on ${OS_FULL}"
-else 
-   error "Feeds update script requires ${OS_REQUIRED}. Current OS: ${OS_FULL}"
-fi
 
 ./scripts/feeds update
 success "Feeds update script finished."
