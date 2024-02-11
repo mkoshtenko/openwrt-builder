@@ -8,5 +8,6 @@
 .vagrant*
 
 # Project
-.builds
+.build
+builder
 

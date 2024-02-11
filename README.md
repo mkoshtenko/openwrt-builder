@@ -42,7 +42,7 @@ vagrant up
 
 Create build:
 ```
-vagrant ssh -c 'cd ~/; ./scripts/build'
+vagrant ssh -c 'cd ~/; ./scripts/build.sh'
 ```
 
 Clean up:
@@ -50,4 +50,4 @@ Clean up:
 vagrant destroy
 ```
 
-The image file should be in `./builds` directory, e.g. `openwrt-rpi-4.img.gz`
+The image file should be in `./builds` directory, e.g. `./builds/openwrt-rpi-4.img.gz`
