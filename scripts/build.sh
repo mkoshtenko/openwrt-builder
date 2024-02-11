@@ -62,10 +62,11 @@ echo 'src-git packages https://git.openwrt.org/feed/packages.git' | tee feeds.co
 OS_NAME="$(uname)"
 OS_ARC="$(uname -m)"
 OS_FULL="${OS_NAME}-${OS_ARC}"
-if [ "${OS_FULL}" = "Linux-x85_64" ]; then
+OS_REQUIRED="Linux-x86_64"
+if [ "${OS_FULL}" = "${OS_REQUIRED}" ]; then
    success "Running on ${OS_FULL}"
 else 
-   error "Feeds update script requires Linux-x86_64. Current OS: ${OS_FULL}"
+   error "Feeds update script requires ${OS_REQUIRED}. Current OS: ${OS_FULL}"
 fi
 
 ./scripts/feeds update
