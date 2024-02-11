@@ -51,3 +51,9 @@ vagrant destroy
 ```
 
 The image file should be in `./builds` directory, e.g. `./builds/openwrt-rpi-4.img.gz`
+
+## Troubleshooting
+Run Ansible playbook w/o destroying the deployment:
+```
+vagrant provision
+```
