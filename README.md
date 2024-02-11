@@ -42,7 +42,7 @@ vagrant up
 
 Create build:
 ```
-vagrant ssh -c 'cd ~/; ./scripts/build.sh'
+vagrant ssh -c './scripts/build.sh'
 ```
 
 Clean up:
