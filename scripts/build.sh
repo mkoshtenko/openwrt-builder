@@ -47,7 +47,7 @@ if [ -e "${PACKAGES_PATH}" ]; then
 else
     error "Packages list not found at ${PACKAGES_PATH}"
 fi
-PACKAGES=$(cat "${PACKAGES_PATH}" | grep -e '^[^#$]' | xargs)
+PACKAGES=$(grep -e '^[^#$]' "${PACKAGES_PATH}" | xargs)
 if [ -z "${PACKAGES}" ]; then
     error "Did not find package names."
 else
