@@ -5,6 +5,9 @@ set -o nounset   # abort on unbound variable
 
 HOME_PATH="$(pwd)"
 
+SCRIPTS_PATH="${HOME_PATH}/scripts"
+PACKAGES_PATH="${SCRIPTS_PATH}/packages.txt"
+
 OUTPUT_DIR="builds"
 OUTPUT_PATH="${HOME_PATH}/${OUTPUT_DIR}"
 OUTPUT_NAME="openwrt-rpi-4.img.gz"
@@ -16,9 +19,6 @@ BUILDER_DIR="builder"
 BUILDER_PATH="${HOME_PATH}/${BUILDER_DIR}"
 
 BUILD_PATH="${BUILDER_PATH}/bin/targets/bcm27xx/bcm2711/openwrt-bcm27xx-bcm2711-rpi-4-ext4-factory.img.gz"
-
-INCLUDE_PACKAGES="python3"
-EXCLUDE_PACKAGES="-e2fsprogs -mkf2fs -partx-utils"
 
 ## Output formatting
 COLOR_RESET="\e[0m"
@@ -40,6 +40,22 @@ success() {
 }
 
 ###################
+
+info "Loading packages list."
+if [ -e "${PACKAGES_PATH}" ]; then
+    echo "${PACKAGES_PATH}"
+else
+    error "Packages list not found at ${PACKAGES_PATH}"
+fi
+PACKAGES=$(cat "${PACKAGES_PATH}" | grep -e '^[^#$]' | xargs)
+if [ -z "${PACKAGES}" ]; then
+    error "Did not find package names."
+else
+    count=$(echo ${PACKAGES} | wc -w | xargs)
+    echo "Found ${count} packages:"
+    echo ${PACKAGES}
+fi
+success "Loaded list of build packages."
 
 info "Checking current OS and CPU architecture."
 OS_NAME="$(uname)"
@@ -74,7 +90,7 @@ echo 'src-git packages https://git.openwrt.org/feed/packages.git' | tee feeds.co
 success "Feeds update script finished."
 
 info "Building image."
-make image PROFILE=rpi-4 PACKAGES="${INCLUDE_PACKAGES} ${EXCLUDE_PACKAGES}" || error "Build failed."
+make image PROFILE=rpi-4 PACKAGES="${PACKAGES}" || error "Build failed."
 success "Created $(file "${BUILD_PATH}")"
 
 info "Moving created image to the output folder"
