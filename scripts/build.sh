@@ -41,6 +41,17 @@ success() {
 
 ###################
 
+info "Checking current OS and CPU architecture."
+OS_NAME="$(uname)"
+OS_ARC="$(uname -m)"
+OS_FULL="${OS_NAME}-${OS_ARC}"
+OS_REQUIRED="Linux-x86_64"
+if [ "${OS_FULL}" = "${OS_REQUIRED}" ]; then
+   success "Running on ${OS_FULL}"
+else 
+   error "Image builder scripts require ${OS_REQUIRED}. Current OS: ${OS_FULL}"
+fi
+
 info "Loading packages list."
 if [ -e "${PACKAGES_PATH}" ]; then
     echo "${PACKAGES_PATH}"
@@ -56,17 +67,6 @@ else
     echo "${PACKAGES}"
 fi
 success "Loaded list of build packages."
-
-info "Checking current OS and CPU architecture."
-OS_NAME="$(uname)"
-OS_ARC="$(uname -m)"
-OS_FULL="${OS_NAME}-${OS_ARC}"
-OS_REQUIRED="Linux-x86_64"
-if [ "${OS_FULL}" = "${OS_REQUIRED}" ]; then
-   success "Running on ${OS_FULL}"
-else 
-   error "Image builder scripts require ${OS_REQUIRED}. Current OS: ${OS_FULL}"
-fi
 
 info "Checking builder directory."
 rm -rf "${BUILDER_PATH}" || error "Cannot delete existing builder directory."
