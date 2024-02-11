@@ -1,0 +1,30 @@
+### A list of packages to include or exclude when creating a new image build.
+#
+# One package name per line.
+# Lines starting with '#' character will be ignored.
+# Packages starting with '-' character will be excluded from the build.
+###
+
+
+### Ansible requires python3, which is not present by default
+# TODO: test if Ansible works with python3-light package
+python3
+
+
+### [DFRobot CM4 Router Broad](https://wiki.dfrobot.com/Compute_Module_4_IoT_Router_Board_Mini_SKU_DFR0767)
+# Kernel modules for RealTek RTL-8169 PCI Gigabit Ethernet adapters
+kmod-r8169
+
+# This driver provides USB Device Controller support for the Synopsys DesignWare USB OTG Core.
+# Note: add dtoverlay=dwc2 to /boot/config.txt
+kmod-usb-dwc2
+
+# This package contains the header and static libraries of the BCM27xx userland tools.
+bcm27xx-userland
+
+
+### Exclude the following packages
+-e2fsprogs
+-mkf2fs
+-partx-utils
+
