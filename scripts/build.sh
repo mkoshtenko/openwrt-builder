@@ -18,7 +18,8 @@ BUILDER_URL="${BUILDER_LOCATION}/${BUILDER_NAME}"
 BUILDER_DIR="builder"
 BUILDER_PATH="${HOME_PATH}/${BUILDER_DIR}"
 
-BUILD_PATH="${BUILDER_PATH}/bin/targets/bcm27xx/bcm2711/openwrt-bcm27xx-bcm2711-rpi-4-ext4-factory.img.gz"
+BUILD_DIR="${BUILDER_PATH}/bin/targets/bcm27xx/bcm2711"
+BUILD_PATH="${BUILD_DIR}/openwrt-bcm27xx-bcm2711-rpi-4-ext4-factory.img.gz"
 
 ## Output formatting
 COLOR_RESET="\e[0m"
@@ -91,6 +92,7 @@ success "Feeds update script finished."
 
 info "Building image."
 make image PROFILE=rpi-4 PACKAGES="${PACKAGES}" || error "Build failed."
+ls -lah "${BUILD_DIR}"
 success "Created $(file "${BUILD_PATH}")"
 
 info "Moving created image to the output folder"
