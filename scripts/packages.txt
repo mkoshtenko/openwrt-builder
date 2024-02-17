@@ -12,12 +12,22 @@ python3
 
 
 ### [DFRobot CM4 Router Broad](https://wiki.dfrobot.com/Compute_Module_4_IoT_Router_Board_Mini_SKU_DFR0767)
-# Kernel modules for RealTek RTL-8169 PCI Gigabit Ethernet adapters
+# RealTek RTL-8169 PCI Gigabit Ethernet adapters
+r8169-firmware
+kmod-mii
+kmod-libphy
+kmod-phy-realtek
 kmod-r8169
 
 # This driver provides USB Device Controller support for the Synopsys DesignWare USB OTG Core.
 # Note: add dtoverlay=dwc2 to /boot/config.txt
 kmod-usb-dwc2
+
+# USB 3.0 Gb NIC
+kmod-usb-core
+kmod-usb-storage
+kmod-usb3
+kmod-usb-net-rtl8152
 
 # This package contains the header and static libraries of the BCM27xx userland tools.
 bcm27xx-userland
